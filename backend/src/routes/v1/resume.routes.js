@@ -4,6 +4,8 @@ import { upload } from "../../middlewares/fileUpload.middleware.js";
 
 const resumeRouter = express.Router();
 
+resumeRouter.get("/", resumeController.getUploadedList);
+resumeRouter.delete("/:id", resumeController.deleteResume);
 resumeRouter.post(
   "/upload",
   upload.single("resume-file"),
