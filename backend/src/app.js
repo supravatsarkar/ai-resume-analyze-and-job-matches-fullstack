@@ -1,5 +1,4 @@
 import express from "express";
-import { config } from "./config/index.js";
 import requestLogger from "./middlewares/requestLogger.middleware.js";
 import v1Routers from "./routes/v1/index.js";
 import { errorHandleMiddleware } from "./middlewares/errorHandle.middleware.js";

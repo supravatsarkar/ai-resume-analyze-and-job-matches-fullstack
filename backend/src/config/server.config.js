@@ -1,10 +1,11 @@
 import { configDotenv } from "dotenv";
 
 configDotenv();
-const config = {
+const serverConfig = {
   PORT: process.env.PORT || 5001,
   RESUME_UPLOAD_SIZE_LIMIT:
     Number(process.env.UPLOAD_FILE_SIZE_LIMIT) || 2 * 1024 * 1024, // 2mb (in byte)
+  MONGO_DB_URI: process.env.MONGO_DB_URI,
 };
-console.log(config);
-export { config };
+console.log(serverConfig);
+export { serverConfig };

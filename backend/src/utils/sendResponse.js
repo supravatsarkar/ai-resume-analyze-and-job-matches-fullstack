@@ -1,5 +1,4 @@
-const express = require("express");
-module.exports.sendResponse = (
+export const sendResponse = (
   res,
   {
     success = true,

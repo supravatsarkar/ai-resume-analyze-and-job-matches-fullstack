@@ -1,10 +1,11 @@
 import app from "./src/app.js";
-import { config } from "./src/config/index.js";
+import { serverConfig } from "./src/config/server.config.js";
+import connect from "./src/db/connection.js";
 
 // connect to db
-//have to add db connection logic
+connect();
 
 // server listening
-app.listen(config.PORT, () => {
-  console.log("Server listen port: ", config.PORT);
+app.listen(serverConfig.PORT, () => {
+  console.log("Server listen port: ", serverConfig.PORT);
 });
