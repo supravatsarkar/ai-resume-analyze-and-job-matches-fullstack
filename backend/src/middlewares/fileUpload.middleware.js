@@ -2,6 +2,13 @@ import multer from "multer";
 import path from "path";
 import { serverConfig } from "../config/server.config.js";
 
+export class MulterError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "MulterError";
+  }
+}
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "uploads");
@@ -20,12 +27,13 @@ export const upload = multer({
   storage: storage,
   fileFilter: (req, file, cb) => {
     //check file type
+    console.log("upload middleware", file);
     const allowedTypes = ["application/pdf"];
     const fileExt = path.extname(file.originalname).toLowerCase();
     if (allowedTypes.includes(file.mimetype) && fileExt === ".pdf") {
       cb(null, true);
     } else {
-      const newError = new Error(
+      const newError = new MulterError(
         `Only ${allowedTypes.join(", ")} files are allowed`,
       );
       cb(newError, false);

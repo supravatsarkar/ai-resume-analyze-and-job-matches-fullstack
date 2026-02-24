@@ -7,9 +7,9 @@ const resumeSchema = new mongoose.Schema(
     sortContentText: { type: String, required: true },
     originFile: { type: String, required: true },
     userId: { type: String, ref: "User", default: null },
-    aiResponse: { type: String, default: null },
+    aiResponse: { type: Object, default: null },
   },
-  { timeseries: true, versionKey: false },
+  { timestamps: true, versionKey: false },
 );
 
 const Resume = mongoose.model("Resume", resumeSchema);

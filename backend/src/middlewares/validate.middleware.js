@@ -13,6 +13,7 @@ const validate = (schema) => (req, res, next) => {
       .map((details) => details.message)
       .join(", ");
     return sendResponse(res, {
+      success: false,
       statusCode: 400,
       message: errorMessage,
     });
