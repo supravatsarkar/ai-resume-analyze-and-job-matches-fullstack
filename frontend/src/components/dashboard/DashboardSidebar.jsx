@@ -9,22 +9,22 @@ export default function DashboardSidebar() {
     return isActive ? NavLinkActiveStyle : NavLinkStyle;
   }
   return (
-    <div className="w-50 bg-white border-r min-h-screen p-4 space-y-2">
+    <div className="w-50 bg-white border-r p-4 space-y-2">
       <NavLink className={handleLinkStyle} to="/dashboard" end>
         Overview
       </NavLink>
       <NavLink className={handleLinkStyle} to="/dashboard/resume" end>
         Resume Versions
       </NavLink>
-      <NavLink className={handleLinkStyle} to="/dashboard/analysis" end>
+      {/* <NavLink className={handleLinkStyle} to="/dashboard/analysis" end>
         ATS Analysis
-      </NavLink>
+      </NavLink> */}
       <NavLink className={handleLinkStyle} to="/dashboard/jobs" end>
         Job Matches
       </NavLink>
-      <NavLink className={handleLinkStyle} to="/dashboard/roadmap" end>
+      {/* <NavLink className={handleLinkStyle} to="/dashboard/roadmap" end>
         Career Roadmap
-      </NavLink>
+      </NavLink> */}
     </div>
   );
 }

@@ -2,23 +2,37 @@ import { Card } from "@/components/ui/card";
 import { CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import React from "react";
-import { Outlet } from "react-router";
+import { Outlet, useNavigate } from "react-router";
 import DashboardSidebar from "../components/dashboard/DashboardSidebar";
+import config from "../config/config";
+import { toast } from "react-toastify";
 
 export default function DashboardLayout() {
+  const navigation = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("userInfo");
+    toast.success("Successfully logged out!");
+    setTimeout(() => {
+      navigation("/");
+    }, 500);
+  };
   return (
-    <div>
-      <header className="bg-white p-4 shadow-lg border border-bottom-1 flex items-center justify-between">
+    <div className="">
+      <header className="bg-white p-4 shadow-lg border border-bottom-1 flex items-center justify-between sticky-top">
         <div>
-          <h1 className="text-2xl font-bold">App Logo & title</h1>
+          <h1 className="text-2xl font-bold">{config.appName}</h1>
         </div>
         <div>
-          <Button>Logout</Button>
+          <Button className="hover:cursor-pointer" onClick={handleLogout}>
+            Logout
+          </Button>
         </div>
       </header>
-      <div className="flex bg-gray-50 min-h-screen">
+      <div className="flex bg-gray-50 ">
         <DashboardSidebar />
-        <Outlet />
+        <div className="h-screen w-full overflow-y-scroll">
+          <Outlet />
+        </div>
       </div>
     </div>
   );

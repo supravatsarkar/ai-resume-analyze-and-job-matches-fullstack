@@ -9,7 +9,7 @@ export default function Home() {
       {" "}
       <div className="max-w-7xl mx-auto p-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center space-y-6"
         >

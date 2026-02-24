@@ -1,21 +1,64 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Card, CardContent } from "../ui/card";
+import AiOverview from "./AiOverview";
+import PremiumAiOverview from "./PremiumAiOverview";
+import { motion } from "motion/react";
+import axios from "axios";
+import UploadResume from "./UploadResume";
 
 export default function DashboardHome() {
+  const [resume, setResume] = React.useState(null);
+  console.log("resume", resume);
+  useEffect(() => {
+    axios
+      .get("/api/v1/resume/latest")
+      .then((res) => {
+        console.log(res.data);
+        setResume(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  if (!resume) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="text-center space-y-6"
+      >
+        <div className="max-w-6xl mx-auto p-6">
+          {/* <AiOverview data={aiData} /> */}
+          <UploadResume />
+        </div>
+      </motion.div>
+    );
+  }
+  if (resume && !resume?.aiResponse) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="text-center space-y-6"
+      >
+        <div className="max-w-6xl mx-auto p-6">
+          <h1>AI Analysis will appear here</h1>
+        </div>
+      </motion.div>
+    );
+  }
+
   return (
-    <div>
-      {" "}
-      <h1 className="text-2xl font-bold mb-4">Dashboard Overview</h1>
-      <div className="grid md:grid-cols-3 gap-4">
-        {["ATS Score", "Skill Gap", "Job Matches"].map((item) => (
-          <Card key={item} className="rounded-2xl">
-            <CardContent className="p-6">
-              <p className="text-gray-500">{item}</p>
-              <p className="text-3xl font-bold">--</p>
-            </CardContent>
-          </Card>
-        ))}
+    <motion.div
+      initial={{ opacity: 0, y: 60 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="text-center space-y-6"
+    >
+      <div className="max-w-6xl mx-auto p-6">
+        {/* <AiOverview data={aiData} /> */}
+        <PremiumAiOverview data={resume.aiResponse} />
       </div>
-    </div>
+    </motion.div>
   );
 }
