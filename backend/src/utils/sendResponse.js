@@ -1,3 +1,5 @@
+import { serverConfig } from "../config/server.config.js";
+
 export const sendResponse = (
   res,
   {
@@ -8,6 +10,13 @@ export const sendResponse = (
     error = null,
   },
 ) => {
+  if (success === false && statusCode >= 500) {
+    console.error("Error", error);
+    if (serverConfig.SERVER_ENV === "prod") {
+      message = "Something went wrong!";
+      error = null;
+    }
+  }
   return res.status(statusCode).json({
     success,
     data,
