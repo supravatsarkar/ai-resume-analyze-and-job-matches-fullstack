@@ -15,6 +15,11 @@ import ATSAnalysis from "./components/dashboard/ATSAnalysis.jsx";
 import JobMatches from "./components/dashboard/JobMatches.jsx";
 import Roadmap from "./components/dashboard/Roadmap.jsx";
 import Resume from "./components/dashboard/Resume.jsx";
+import setupAxios from "./utils/axiosConfig.js";
+import { ToastContainer } from "react-toastify";
+
+// call setup axios
+setupAxios();
 
 const router = createBrowserRouter([
   {
@@ -68,7 +73,8 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")).render(
-  // <StrictMode>
-  <RouterProvider router={router} />,
-  // </StrictMode>,
+  <StrictMode>
+    <ToastContainer position="top-right" autoClose={3000} />
+    <RouterProvider router={router} />,
+  </StrictMode>,
 );
