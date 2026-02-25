@@ -14,7 +14,7 @@ export default function DashboardSidebar() {
         Overview
       </NavLink>
       <NavLink className={handleLinkStyle} to="/dashboard/resume" end>
-        Resume Versions
+        Resume
       </NavLink>
       {/* <NavLink className={handleLinkStyle} to="/dashboard/analysis" end>
         ATS Analysis

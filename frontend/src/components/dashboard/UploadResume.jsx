@@ -5,6 +5,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 import { Spinner } from "@/components/ui/spinner";
+import { toast as sonnerToaster } from "sonner";
 
 export default function UploadResume() {
   const [isLoading, setIsLoading] = useState(false);
@@ -17,6 +18,14 @@ export default function UploadResume() {
       toast.error("No file selected!");
       return;
     }
+    // sonnerToaster.warning("Invalid Resume", {
+    //   description: `Focus on obtaining certifications in AWS and Kubernetes, contribute to open‑source or larger team projects, lead a small module to gain leadership experience, and incorporate automated testing and CI/CD pipelines into workflows.`,
+    //   position: "top-center",
+    //   duration: 8000,
+    //   // invert: true,
+    //   closeButton: true,
+    // });
+    // return;
     // alert("Resume uploaded successfully!");
     setIsLoading(true);
     formData.append("resume-file", file);
@@ -28,14 +37,28 @@ export default function UploadResume() {
       })
       .then((res) => {
         console.log("Resume uploaded data", res.data);
+        if (!res.data.isValidResume) {
+          console.log("Invalid resume aiResponse", res.data?.aiResponse);
+          sonnerToaster.error("Invalid Resume", {
+            description: `${res.data?.aiResponse?.ReasonOfInvalidResume}
+            ATSSuggestion: ${res.data?.aiResponse?.ATSSuggestion}.`,
+            position: "top-center",
+            duration: 20000,
+            // invert: true,
+            closeButton: true,
+          });
+          return;
+        }
         // setIsLoading(false);
         toast.success("Resume uploaded and analyzed successfully!");
-        navigate("/dashboard");
+        navigate(`/dashboard`, {
+          state: { refresh: Date.now() },
+        });
       })
       .finally(() => setIsLoading(false));
   };
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <h1 className="text-2xl font-bold mb-4">Upload Resume</h1>
 
       <Card className="rounded-2xl max-w-xl">

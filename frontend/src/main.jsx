@@ -17,9 +17,15 @@ import Roadmap from "./components/dashboard/Roadmap.jsx";
 import Resume from "./components/dashboard/Resume.jsx";
 import setupAxios from "./utils/axiosConfig.js";
 import { ToastContainer } from "react-toastify";
+import { fetchIpLookup } from "./utils/iplookup.js";
+import { Toaster } from "@/components/ui/sonner";
 
 // call setup axios
 setupAxios();
+fetchIpLookup().then((res) => {
+  console.log("ip", res);
+  localStorage.setItem("ipLookup", JSON.stringify(res));
+});
 
 const router = createBrowserRouter([
   {
@@ -73,8 +79,11 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
+  // <StrictMode>
+  <>
     <ToastContainer position="top-right" autoClose={3000} />
+    <Toaster theme="light" />
     <RouterProvider router={router} />,
-  </StrictMode>,
+  </>,
+  // </StrictMode>
 );
