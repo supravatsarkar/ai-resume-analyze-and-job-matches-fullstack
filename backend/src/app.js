@@ -3,6 +3,7 @@ import requestLogger from "./middlewares/requestLogger.middleware.js";
 import v1Routers from "./routes/v1/index.js";
 import { errorHandleMiddleware } from "./middlewares/errorHandle.middleware.js";
 import cors from "cors";
+import notFoundMiddleware from "./middlewares/notFound.middleware.js";
 
 const app = express();
 
@@ -20,6 +21,8 @@ app.get("/health", (req, res) => {
 
 // api routers
 app.use("/api/v1", v1Routers);
+// not found middleware
+app.use(notFoundMiddleware);
 // global error handler middleware
 app.use(errorHandleMiddleware);
 
