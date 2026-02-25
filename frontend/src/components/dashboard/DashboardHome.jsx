@@ -1,13 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Card, CardContent } from "../ui/card";
 import AiOverview from "./AiOverview";
 import PremiumAiOverview from "./PremiumAiOverview";
 import { motion } from "motion/react";
 import axios from "axios";
 import UploadResume from "./UploadResume";
+import { useLocation } from "react-router";
 
 export default function DashboardHome() {
+  const location = useLocation();
   const [resume, setResume] = React.useState(null);
+
+  if (resume) {
+    localStorage.setItem("latestResume", JSON.stringify(resume));
+  }
   console.log("resume", resume);
   useEffect(() => {
     axios
@@ -19,7 +25,7 @@ export default function DashboardHome() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [location.state]);
 
   if (!resume) {
     return (

@@ -14,6 +14,8 @@ import {
   PolarRadiusAxis,
   ResponsiveContainer,
 } from "recharts";
+import { Button } from "../ui/button";
+import { Navigate, useNavigate } from "react-router";
 
 /* ========================= */
 /* Main Component */
@@ -78,7 +80,7 @@ function HeroScore({ data }) {
   const score = data.ATScore || 0;
   const strokeDasharray = 440;
   const strokeDashoffset = strokeDasharray - (score / 100) * strokeDasharray;
-
+  const navigate = useNavigate();
   return (
     <div className="relative overflow-hidden rounded-3xl p-8 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 text-white shadow-xl">
       <div className="grid md:grid-cols-2 gap-8 items-center">
@@ -121,6 +123,15 @@ function HeroScore({ data }) {
               {score}%
             </div>
           </div>
+        </div>
+        {/* END RIGHT — Get Job button   */}
+        <div>
+          <Button
+            onClick={() => navigate("/dashboard/jobs")}
+            className="shadow hover:cursor-pointer  transition-all focus:shadow-lg"
+          >
+            View Job Matches →
+          </Button>
         </div>
       </div>
     </div>
