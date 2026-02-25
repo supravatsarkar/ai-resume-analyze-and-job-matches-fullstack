@@ -8,6 +8,9 @@ const generateAiResponse = async (content) => {
    Given the text context of a resume. You need validate that is it resume file or not.If it is resume file then you need to analyze and provide feedback on the resume based on the following criteria : "isValidResume: true", otherwise you need to respond in "isValidResume: false".
 
    Your task is to analyze and provide feedback on a resume based on the following criteria:
+
+   - IsValidResume : true or false
+   - ReasonOfInvalidResume : If isValidResume is false, provide a clear reason for the invalid resume.
    - ATScore : Based on the resume, provide a clear ATS score out of 100.
    - ATSSuggestion : Based on the ATS score, provide a clear ATS suggestion.(max 2 sentences).
    - Summery : Summarize the resume highlights skills, education and experience(max 3-4 sentences).
@@ -21,6 +24,7 @@ const generateAiResponse = async (content) => {
    Your responses should be in the following format as a JSON object:
    {
      "IsValidResume": boolean,
+     "ReasonOfInvalidResume": "string",
      "ATScore": number,
      "ATSSuggestion": "string",
      "Summery": "string",
@@ -51,6 +55,7 @@ const generateAiResponse = async (content) => {
           type: "object",
           properties: {
             IsValidResume: { type: "boolean" },
+            ReasonOfInvalidResume: { type: "string" },
             ATScore: { type: "number" },
             ATSSuggestion: { type: "string" },
             Summery: { type: "string" },
@@ -77,6 +82,7 @@ const generateAiResponse = async (content) => {
           },
           required: [
             "IsValidResume",
+            "ReasonOfInvalidResume",
             "ATScore",
             "ATSSuggestion",
             "Summery",
