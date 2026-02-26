@@ -16,3 +16,11 @@ The application is built using a combination of frontend and backend technologie
 - Resume Management: Users can view and manage their uploaded resumes, including downloading and deleting them.
 - Job Matching: The application suggests relevant job openings based on the user's resume and skills.
 - Premium Features: The application offers premium features, such as advanced AI analysis and personalized career guidance, for users who subscribe to the premium plan.
+
+## Screenshots
+
+![Screenshot 1](screenshots/ss3.png)
+![Screenshot 1](screenshots/ss1.png)
+![Screenshot 1](screenshots/ss4.png)
+![Screenshot 1](screenshots/ss5.png)
+![Screenshot 1](screenshots/ss2.png)
