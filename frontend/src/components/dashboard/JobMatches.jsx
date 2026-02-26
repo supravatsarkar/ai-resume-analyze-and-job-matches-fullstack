@@ -56,7 +56,7 @@ export default function JobMatches() {
     loadJobs();
   }, []);
   return (
-    <div className="mx-10">
+    <div className="mx-10 max-w-300">
       {" "}
       <h1 className="text-2xl font-bold mb-4">Matched Jobs</h1>
       <div className="flex items-center justify-between mb-6">
@@ -65,7 +65,7 @@ export default function JobMatches() {
         </h5>
         <span className="text-sm text-gray-500">{jobs.length} jobs</span>
       </div>
-      <div className="grid gap-4 max-w-300">
+      <div className="grid gap-4 ">
         {jobs.map((job) => (
           <JobCard key={job.id} job={job} />
         ))}
