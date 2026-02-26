@@ -48,6 +48,12 @@ const setupAxios = () => {
             window.location.href = "/login";
           }, 3000); // Small delay to let toast show
         }
+      } else if (error.response && error.response.status === 429) {
+        toast.warning(message || "Too many requests. Please try again later", {
+          draggable: true,
+          pauseOnHover: true,
+          duration: 5000,
+        });
       } else {
         // alert(message);
         toast.error(message || "An error occurred");
