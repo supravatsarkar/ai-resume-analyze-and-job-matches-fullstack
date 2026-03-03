@@ -43,13 +43,16 @@ export default function JobMatches() {
     if (loading || !hasMore) return;
 
     setLoading(true);
-    const newJobs = await mockFetchJobs(page);
+    try {
+      const newJobs = await mockFetchJobs(page);
 
-    if (!newJobs.length) setHasMore(false);
+      if (!newJobs.length) setHasMore(false);
 
-    setJobs((prev) => [...prev, ...newJobs]);
-    setPage((p) => p + 1);
-    setLoading(false);
+      setJobs((prev) => [...prev, ...newJobs]);
+      setPage((p) => p + 1);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
