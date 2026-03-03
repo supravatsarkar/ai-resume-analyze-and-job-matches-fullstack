@@ -1,0 +1,11 @@
+services:
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: api
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env
+    ports:
+      - 5001:5001
