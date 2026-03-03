@@ -4,9 +4,11 @@ import v1Routers from "./routes/v1/index.js";
 import { errorHandleMiddleware } from "./middlewares/errorHandle.middleware.js";
 import cors from "cors";
 import notFoundMiddleware from "./middlewares/notFound.middleware.js";
+import helmet from "helmet";
 
 const app = express();
 
+app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

@@ -5,7 +5,7 @@ import { MulterError } from "./fileUpload.middleware.js";
 export const errorHandleMiddleware = (err, req, res, next) => {
   console.log("Global error handler: ", err);
   if (err instanceof MulterError) {
-    console.log("Mlt", err.message);
+    console.log("MulterError", err.message);
     return sendResponse(res, {
       success: false,
       statusCode: 400,

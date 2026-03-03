@@ -30,6 +30,6 @@ export const jobMatchRateLimiter = createRateLimiter({
 });
 
 export const globalRateLimiter = createRateLimiter({
-  windowInMinutes: 30,
+  windowInMinutes: 15,
   max: 100,
 });
