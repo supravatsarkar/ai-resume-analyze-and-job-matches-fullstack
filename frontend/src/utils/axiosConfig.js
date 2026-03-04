@@ -1,8 +1,10 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
+console.log("ENV BaseUrl", baseUrl);
 const setupAxios = () => {
-  axios.defaults.baseURL = "http://localhost:5001";
+  const fallbackBaseUrl = "http://localhost:5001";
+  axios.defaults.baseURL = baseUrl || fallbackBaseUrl;
   axios.defaults.headers.post["Content-Type"] = "application/json";
   axios.interceptors.request.use(
     (config) => {
