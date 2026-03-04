@@ -17,7 +17,7 @@ import Roadmap from "./components/dashboard/Roadmap.jsx";
 import Resume from "./components/dashboard/Resume.jsx";
 import setupAxios from "./utils/axiosConfig.js";
 import { ToastContainer } from "react-toastify";
-import { fetchIpLookup } from "./utils/iplookup.js";
+import { fetchIpLookup } from "./utils/ipLookup.jsx";
 import { Toaster } from "@/components/ui/sonner";
 
 // call setup axios
