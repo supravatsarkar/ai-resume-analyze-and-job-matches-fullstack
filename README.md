@@ -4,7 +4,7 @@ ResumeIQ AI is a web-based tool that helps users optimize their resumes for appl
 
 ## Overview
 
-The application is built using a combination of frontend and backend technologies. The frontend is developed using React and Next.js, with Tailwind CSS for styling. The backend is implemented using Node.js with Express.js, and MongoDB is used as the database. The application's functionality is divided into separate components and services for better organization and maintainability.
+The application is built using a combination of frontend and backend technologies. The frontend is developed using React with Tailwind CSS for styling. The backend is implemented using Node.js with Express.js, and MongoDB is used as the database. The application's functionality is divided into separate components and services for better organization and maintainability.
 
 ## Features
 
@@ -15,21 +15,16 @@ The application is built using a combination of frontend and backend technologie
 - Dashboard: The dashboard provides an overview of the user's resume status, including ATS scores, skill gaps, and job matches.
 - Resume Management: Users can view and manage their uploaded resumes, including downloading and deleting them.
 - Job Matching: The application suggests relevant job openings based on the user's resume and skills.
-- Premium Features: The application offers premium features, such as advanced AI analysis and personalized career guidance, for users who subscribe to the premium plan.
+- ~~Premium Features: The application offers premium features, such as advanced AI analysis and personalized career guidance, for users who subscribe to the premium plan.~~
 
-## Todo
+## Live Site: https://resumeiq.supralabs.online
 
-- Dockerization
-- Continuous Integration and Deployment (CI/CD)
-- Redis integration for caching and session management
-- Unit Testing
-- Frontend refresh token implementation
-- Google OAuth
-- Password rest
-- Email verification
-- Notifications service
-- Subscription feature
-- Payment integration
+### Demo User
+
+```
+email: supravat.sarkar20@yopmail.com
+password: Qwerty@123
+```
 
 ## Screenshots
 
@@ -38,3 +33,58 @@ The application is built using a combination of frontend and backend technologie
 ![Screenshot 1](screenshots/ss4.png)
 ![Screenshot 1](screenshots/ss5.png)
 ![Screenshot 1](screenshots/ss2.png)
+
+## Local Project setup guide
+
+```
+1. Clone the repository
+
+git clone https://github.com/supravatsarkar/ai-resume-analyze-and-job-matches-fullstack resumeiq-ai
+cd resumeiq-ai
+
+
+2. Install dependencies
+cd backend
+npm install
+
+cd ../frontend
+npm install
+
+3. Setup environment variables
+
+Create a .env file inside the backend folder using given backend/.env.example file
+
+4. Create LLM api keys
+5. Start MongoDB
+
+6. Run the backend
+cd backend
+npm run dev
+http://localhost:5001 or your given port
+
+
+7. Open the application
+http://localhost:5173
+
+8. Run the frontend
+cd frontend
+npm run dev
+
+
+```
+
+## Todo
+
+- ~~Basic API Rate limit~~
+- ~~Basic Dockerization~~
+- Continuous Integration and Deployment (CI/CD)
+- Redis integration for caching and session management
+- Unit Testing
+- Frontend refresh token implementation
+- Google OAuth
+- Password rest
+- Email verification
+- Notifications service
+- Background Processing services
+- Subscription feature
+- Payment integration

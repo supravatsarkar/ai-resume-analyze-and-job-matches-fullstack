@@ -17,7 +17,7 @@ app.use(cors({ origin: "*" }));
 
 app.use(requestLogger());
 
-app.get("/health", (req, res) => {
+app.get("/api/health", (req, res) => {
   return res.send("Ok");
 });
 
