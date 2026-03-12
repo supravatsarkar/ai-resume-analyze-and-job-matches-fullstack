@@ -27,7 +27,7 @@ export default function Signup() {
         return;
       }
       const res = await axios.post("/api/v1/auth/register", signupInfo);
-      console.log("res", res);
+      // console.log("res", res);
       if (res.success && res.data?.accessToken) {
         localStorage.setItem("accessToken", res.data.accessToken);
         localStorage.setItem("userInfo", JSON.stringify(res.data));
@@ -42,7 +42,7 @@ export default function Signup() {
       console.error("handleSignup:", error);
     }
   };
-  console.log("signupInfo", signupInfo);
+  // console.log("signupInfo", signupInfo);
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <Card className="w-full max-w-md rounded-2xl shadow">

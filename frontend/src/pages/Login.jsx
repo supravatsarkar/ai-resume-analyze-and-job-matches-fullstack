@@ -10,11 +10,11 @@ export default function Login() {
     email: "",
     password: "",
   });
-  console.log("loginInfo=>", loginInfo);
+  // console.log("loginInfo=>", loginInfo);
   const navigate = useNavigate();
   const handleLogin = async (loginInfo) => {
     try {
-      console.log("loginInfo", loginInfo);
+      // console.log("loginInfo", loginInfo);
       if (!loginInfo.email) {
         toast.error("Please enter email and password!");
         return;
@@ -24,7 +24,7 @@ export default function Login() {
         return;
       }
       const res = await axios.post("/api/v1/auth/login", loginInfo);
-      console.log("res", res);
+      // console.log("res", res);
       if (res.success && res.data?.accessToken) {
         // localStorage.setItem("accessToken", res.data.accessToken);
         localStorage.setItem("userInfo", JSON.stringify(res.data));

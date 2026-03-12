@@ -13,7 +13,7 @@ export default function UploadResume() {
   const [file, setFile] = useState(null);
   const navigate = useNavigate();
   const handleFileUpload = async () => {
-    console.log("File: ", file);
+    // console.log("File: ", file);
     if (!file) {
       toast.error("No file selected!");
       return;

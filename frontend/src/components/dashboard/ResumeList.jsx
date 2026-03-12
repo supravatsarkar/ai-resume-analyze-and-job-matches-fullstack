@@ -19,7 +19,7 @@ export default function ResumeList() {
         responseType: "blob",
       })
       .then((res) => {
-        console.log("blob res", res);
+        // console.log("blob res", res);
         const blob = new Blob([res], { type: res.type });
         const url = window.URL.createObjectURL(blob);
         const link = document.createElement("a");
@@ -35,7 +35,7 @@ export default function ResumeList() {
     axios
       .delete(`/api/v1/resume/${resumeId}`)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res.success) {
           const filtered = resumes.filter((resume) => resume._id !== resumeId);
           setResumes(filtered);

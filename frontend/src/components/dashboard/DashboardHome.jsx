@@ -14,16 +14,16 @@ export default function DashboardHome() {
   if (resume) {
     localStorage.setItem("latestResume", JSON.stringify(resume));
   }
-  console.log("resume", resume);
+  // console.log("resume", resume);
   useEffect(() => {
     axios
       .get("/api/v1/resume/latest")
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setResume(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   }, [location.state]);
 
