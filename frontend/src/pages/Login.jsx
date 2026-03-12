@@ -4,15 +4,18 @@ import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { Spinner } from "@/components/ui/spinner";
 
 export default function Login() {
   const [loginInfo, setLoginInfo] = useState({
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
   // console.log("loginInfo=>", loginInfo);
   const navigate = useNavigate();
   const handleLogin = async (loginInfo) => {
+    setLoading(true);
     try {
       // console.log("loginInfo", loginInfo);
       if (!loginInfo.email) {
@@ -37,6 +40,8 @@ export default function Login() {
       }
     } catch (error) {
       console.error("handleLogin:", error);
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -68,10 +73,11 @@ export default function Login() {
             }
           />
           <Button
-            className="w-full hover:cursor-pointer"
+            className="w-full"
             onClick={() => handleLogin(loginInfo)}
+            disabled={loading}
           >
-            Login
+            {loading ? <Spinner /> : "Login"}
           </Button>
           <p className="text-sm text-center">
             No account?{" "}

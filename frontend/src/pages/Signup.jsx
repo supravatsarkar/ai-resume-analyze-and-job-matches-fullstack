@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { Spinner } from "@/components/ui/spinner";
 
 export default function Signup() {
   const [signupInfo, setSignupInfo] = useState({
@@ -11,9 +12,11 @@ export default function Signup() {
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const handleSignup = async (signupInfo) => {
     try {
+      setLoading(true);
       if (!signupInfo.name) {
         toast.error("Please enter Name!");
         return;
@@ -40,6 +43,8 @@ export default function Signup() {
       }
     } catch (error) {
       console.error("handleSignup:", error);
+    } finally {
+      setLoading(false);
     }
   };
   // console.log("signupInfo", signupInfo);
@@ -81,9 +86,10 @@ export default function Signup() {
           />
           <Button
             onClick={() => handleSignup(signupInfo)}
+            disabled={loading}
             className="w-full hover:cursor-pointer"
           >
-            Signup
+            {loading ? <Spinner /> : "Login"}
           </Button>
           <p className="text-sm text-center">
             Already have account?{" "}
