@@ -1,13 +1,18 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 
-const userSchema = new mongoose.Schema({
-  name: { type: String },
-  role: { type: String, enum: ["jobseeker", "admin"], default: "jobseeker" },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  refreshToken: { type: String, default: null },
-});
+const userSchema = new mongoose.Schema(
+  {
+    name: { type: String },
+    role: { type: String, enum: ["jobseeker", "admin"], default: "jobseeker" },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    refreshToken: { type: String, default: null },
+    isGuest: { type: Boolean, default: false },
+    verifiedAt: { type: Date, default: null },
+  },
+  { timestamps: true },
+);
 
 userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
