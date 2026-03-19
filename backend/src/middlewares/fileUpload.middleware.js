@@ -2,10 +2,10 @@ import multer from "multer";
 import path from "path";
 import { serverConfig } from "../config/server.config.js";
 
-export class MulterError extends Error {
+export class CustomMulterError extends Error {
   constructor(message) {
     super(message);
-    this.name = "MulterError";
+    this.name = "CustomMulterError";
   }
 }
 
@@ -22,7 +22,7 @@ const storage = multer.diskStorage({
 });
 export const upload = multer({
   limits: {
-    fileSize: serverConfig.RESUME_UPLOAD_SIZE_LIMIT,
+    fileSize: serverConfig.RESUME_UPLOAD_SIZE_LIMIT_IN_MB * 1024 * 1024, // convert mb to byte
   },
   storage: storage,
   fileFilter: (req, file, cb) => {
@@ -33,7 +33,7 @@ export const upload = multer({
     if (allowedTypes.includes(file.mimetype) && fileExt === ".pdf") {
       cb(null, true);
     } else {
-      const newError = new MulterError(
+      const newError = new CustomMulterError(
         `Only ${allowedTypes.join(", ")} files are allowed`,
       );
       cb(newError, false);
