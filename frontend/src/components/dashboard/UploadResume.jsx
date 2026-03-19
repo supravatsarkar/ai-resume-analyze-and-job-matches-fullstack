@@ -18,6 +18,10 @@ export default function UploadResume() {
       toast.error("No file selected!");
       return;
     }
+    if (file.size > 2 * 1024 * 1024) {
+      toast.warning("Maximum file size is 2MB!");
+      return;
+    }
     // sonnerToaster.warning("Invalid Resume", {
     //   description: `Focus on obtaining certifications in AWS and Kubernetes, contribute to open‑source or larger team projects, lead a small module to gain leadership experience, and incorporate automated testing and CI/CD pipelines into workflows.`,
     //   position: "top-center",
@@ -64,11 +68,13 @@ export default function UploadResume() {
       <Card className="rounded-2xl max-w-xl">
         <CardContent className="p-6 space-y-4">
           <label className="text-gray-500">
-            Upload your resume in PDF format:
+            Upload your resume in PDF format:{" "}
+            <span className="text-red-400"> max 2MB</span>
           </label>
           <input
             type="file"
             accept=".pdf"
+            maxLength={2}
             className="w-full border border-gray-300 bg-gray-100 p-2 rounded-md border-dark hover:border-gray-400 cursor-pointer"
             onChange={(e) => setFile(e.target.files[0])}
           />
